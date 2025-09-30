@@ -1,0 +1,41 @@
+<div class="form-container">
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form">
+
+    <label for="id">Employee ID:</label>
+    <input type="number" id="id" formControlName="id">
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" formControlName="username">
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" formControlName="password">
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" formControlName="name">
+
+    <label>Department:</label>
+    <label><input type="radio" value="IT" formControlName="department"> IT</label>
+    <label><input type="radio" value="Finance" formControlName="department"> Finance</label>
+    <label><input type="radio" value="HR" formControlName="department"> HR</label>
+
+    <label for="salary">Salary:</label>
+    <input type="number" id="salary" formControlName="salary">
+
+    <h3>Addresses</h3>
+    <div formArrayName="addresses">
+      <div *ngFor="let addr of addresses.controls; let i = index" [formGroupName]="i">
+        <label for="city">City:</label>
+        <input type="text" formControlName="city">
+
+        <label for="pinCode">Pin Code:</label>
+        <input type="number" formControlName="pinCode">
+
+        <button type="button" (click)="removeAddress(i)">Remove</button>
+      </div>
+    </div>
+
+    <button type="button" (click)="addAddress()">Add Another Address</button>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

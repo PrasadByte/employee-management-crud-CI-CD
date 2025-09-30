@@ -1,0 +1,36 @@
+<div class="table-responsive-xxl">
+  <table class="custom-table table-bordered table-success table-borderless">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Address</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <td>{{ emp.id }}</td>
+        <td>{{ emp.username }}</td>
+        <td>{{ emp.password }}</td>
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.department }}</td>
+        <td>{{ emp.salary }}</td>
+        <td>
+          <!-- 👇 multiple addresses -->
+          <div *ngFor="let addr of emp.addresses">
+            {{ addr.city }}, {{ addr.pinCode }}
+          </div>
+        </td>
+        <td>
+          <button class="btn edit">Edit</button>
+          <button class="btn delete">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

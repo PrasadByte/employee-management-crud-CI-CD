@@ -1,0 +1,106 @@
+.form-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #f4c7c7;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.employee-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+h3 {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #444;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 5px;
+}
+
+/* Radio buttons styling */
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+label[for="it"],
+label[for="finance"],
+label[for="hr"] {
+  font-weight: normal;
+  margin-right: 20px;
+}
+
+/* Address section */
+[formArrayName="addresses"] {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px dashed #bbb;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+[formGroupName] {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button[type="button"] {
+  background: #f0f0f0;
+  color: #333;
+  margin-top: 5px;
+}
+
+button[type="button"]:hover {
+  background: #ddd;
+}
+
+button[type="submit"] {
+  background: #007bff;
+  color: #fff;
+  font-weight: 600;
+}
+
+button[type="submit"]:hover {
+  background: #0056b3;
+}
