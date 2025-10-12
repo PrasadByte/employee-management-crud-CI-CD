@@ -1,16 +1,17 @@
-package com.employee.service;
+package com.employee.service.impl;
 
 import com.employee.Repositoy.EmployeeRepo;
 import com.employee.dto.EmployeeDto;
 import com.employee.entity.Employee;
+import com.employee.service.EmployeeService;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
+@Slf4j
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -50,15 +51,20 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void createEmployee(EmployeeDto empdto) {
+    public Employee createEmployee(EmployeeDto empdto) {
+        log.info("Creating employee: {}", empdto);
         Employee emp = dtotoEntity(empdto);
-        employeeRepo.save(emp);
+      Employee newemp=  employeeRepo.save(emp);
+        log.info("Employee created with ID: {}", newemp.getName());
+        return newemp ;
     }
     @Override
     public List<EmployeeDto> getAllEmployees() {
+        log.info("Fetching all employees");
         List<Employee> userList = employeeRepo.findAll();
+        log.info("Total employees found: {}", userList.size());
        return userList.stream().map(this::entitytoDto).toList();
-//return userList;
+
     }
 
     @Override
@@ -76,7 +82,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Optional<EmployeeDto> getEmployeeById(int id) {
         Employee emp = employeeRepo.findById(id).orElseThrow(() -> new RuntimeException("Employee not found"));
         //return employeeRepo.findById(id);
-      //  return Optional.of(entitytoDto(emp));
+
         return Optional.of(entitytoDto(emp));
     }
 

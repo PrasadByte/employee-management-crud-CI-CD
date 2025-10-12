@@ -13,7 +13,7 @@ public interface EmployeeService {
     Employee dtotoEntity(EmployeeDto empDto);
 
     // Create a new employee
-    void createEmployee(EmployeeDto emp);
+    Employee createEmployee(EmployeeDto emp);
 
     // Get all employees
     List<EmployeeDto> getAllEmployees();

@@ -9,7 +9,7 @@ import lombok.Data;
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)   // ✅ put on the primary key only
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String city;
@@ -18,4 +18,5 @@ public class Address {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
+
 }

@@ -1,10 +1,9 @@
 package com.employee.controller;
 
 import com.employee.dto.EmployeeDto;
+import com.employee.entity.Employee;
 import com.employee.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,36 +17,18 @@ import java.util.Optional;
 @CrossOrigin("http://localhost:4200/")
 @RequestMapping("api/v1/emp")
 public class EmployeeController {
-    private static final Logger logger = LogManager.getLogger(EmployeeController.class);
+
     private final EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
 
         this.employeeService = employeeService;
     }
-      //    @PostMapping("/add")
-//    public ResponseEntity<String> addEmployee(@RequestBody Employee emp) {
-//        employeeService.createEmployee(emp);
-//        return ResponseEntity
-//                .status(HttpStatus.CREATED) // 201 Created
-//                .body("Employee added successfully");
-//    }
-    @PostMapping("/add")
-    public ResponseEntity<String> addEmployee(@RequestBody EmployeeDto emp) {
-        try {
-            employeeService.createEmployee(emp);
-            log.info("Employee added successfully: {}", emp.getName());
-            return ResponseEntity.status(HttpStatus.CREATED).body("Employee added successfully");
-        } catch (Exception e) {
-            log.error("Error while adding employee: {}", e.getMessage(), e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to add employee. Please try again later.");
-        }
 
-//    @PostMapping("/add")
-//    public String addEmployee(@RequestBody Employee emp) {
-//        employeeService.createEmployee(emp);
-//        return "Employee added successfully";
-//    }
+    @PostMapping("/add")
+    public ResponseEntity<EmployeeDto> addEmployee(@RequestBody EmployeeDto emp) {
+      Employee newemp=  employeeService.createEmployee(emp);
+
     }
 
     @GetMapping("/all")

@@ -1,9 +1,10 @@
-package com.employee.service;
+package com.employee.service.impl;
 
 import com.employee.Repositoy.AddressRepo;
 import com.employee.dto.AddressDto;
 import com.employee.entity.Address;
 import com.employee.entity.Employee;
+import com.employee.service.AddressService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.employee.controller;
 
 import com.employee.dto.AddressDto;
-import com.employee.service.AddressServiceImpl;
+import com.employee.service.impl.AddressServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
