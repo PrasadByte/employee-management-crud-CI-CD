@@ -1,13 +1,15 @@
-import { Address } from "./address";
+import { Address } from "./address.model";
 
 
 export interface Employee {
   id: number;
-  username: string;
-  password: string;
   name: string;
+  mobileNo: string;
+  email: string;
+  password: string;
   department: string;
   salary: number;
   addresses: Address[];
+  
 
 }

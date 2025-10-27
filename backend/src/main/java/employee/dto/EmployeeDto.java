@@ -16,8 +16,10 @@ import java.util.List;
 public class EmployeeDto {
     private int id;
     private String name;
-    private String number;
+    private String mobileNo;
     private String email;
     private Laptop laptop;
+    private String department;
     private List<Address> addresses;
+
 }

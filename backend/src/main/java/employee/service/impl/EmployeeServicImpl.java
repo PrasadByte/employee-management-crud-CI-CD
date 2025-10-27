@@ -101,8 +101,11 @@ public class EmployeeServicImpl implements EmployeeService {
             return new EntityNotFoundException("id not found with "+id);
         });
         updateEmp.setName(emp.getName());
-        updateEmp.setNumber(emp.getNumber());
+        updateEmp.setMobileNo(emp.getMobileNo());
         updateEmp.setEmail(emp.getEmail());
+        updateEmp.setDepartment(emp.getDepartment());
+        updateEmp.setSalary(emp.getSalary());
+        log.info("Updating employee with id{}", id);
 
         return employeeRepo.save(updateEmp);
     }
@@ -128,7 +131,7 @@ public class EmployeeServicImpl implements EmployeeService {
         return EmployeeDto.builder()
                 .id(emp.getId())
                 .name(emp.getName())
-                .number(emp.getNumber())
+                .mobileNo(emp.getMobileNo())
                 .email(emp.getEmail())
                 .laptop(emp.getLaptop())
                 .addresses(emp.getAddresses())

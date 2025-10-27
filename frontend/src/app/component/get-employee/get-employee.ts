@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Employee } from '../../model/Employee';
+import { Employee } from '../../model/employee.model';
 import { EmployeeService } from '../../service/employee-service';
 import { AddressService } from '../../service/address-service';
-import { Address } from '../../model/address';
+import { Address } from '../../model/address.model';
 
 @Component({
   selector: 'app-get-employee',
