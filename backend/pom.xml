@@ -73,6 +73,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+
 				<configuration>
 					<annotationProcessorPaths>
 						<path>
@@ -81,8 +82,10 @@
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
+
 			</plugin>
 			<plugin>
+
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
@@ -95,6 +98,8 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<!-- 👇 Added this line to give your jar a clean name -->
+		<finalName>codebytebackend</finalName>
 	</build>
 
 </project>

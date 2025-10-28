@@ -4,9 +4,12 @@
       <tr>
         <th>Id</th>
         <th>Name</th>
-        <th>Department</th>
-        <th>Salary</th>
+        <th>Mobile</th>
+        <th>Email</th>
+        <th>Laptop</th>
+        <th>department</th>
         <th>Address</th>
+        <th>Salary</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -14,14 +17,18 @@
       <tr *ngFor="let emp of employees">
         <td>{{ emp.id }}</td>
         <td>{{ emp.name }}</td>
+        <td>{{emp.mobileNo}}</td>
+        <td>{{emp.email}}</td>
+        <td>{{emp.laptop}}</td>
         <td>{{ emp.department }}</td>
-        <td>{{ emp.salary }}</td>
+        
         <td>
-          <!-- 👇 multiple addresses -->
+          <!--  multiple addresses -->
           <div *ngFor="let addr of emp.addresses">
             {{ addr.city }}, {{ addr.pinCode }}
           </div>
         </td>
+        <td>{{ emp.salary }}</td>
         <td>
           <button class="btn edit">Edit</button>
           <button class="btn delete">Delete</button>

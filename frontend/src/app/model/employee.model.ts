@@ -1,4 +1,5 @@
 import { Address } from "./address.model";
+import { Laptops } from "./laptop.mode";
 
 
 export interface Employee {
@@ -6,6 +7,7 @@ export interface Employee {
   name: string;
   mobileNo: string;
   email: string;
+  laptop: Laptops;
   password: string;
   department: string;
   salary: number;
