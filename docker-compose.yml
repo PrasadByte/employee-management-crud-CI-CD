@@ -1,0 +1,63 @@
+services:
+  # ----------------------------------------------------
+  # 🛢️ MySQL
+  # ----------------------------------------------------
+  mysql:
+    image: mysql:8.3
+    container_name: codebyte-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wt
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - codebyte-net
+
+  # ----------------------------------------------------
+  # ⚙️ Spring Boot Backend
+  # ----------------------------------------------------
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile.backend
+    container_name: codebyte-backend
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "8181:8181"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/wt?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+      SERVER_PORT: 8181
+    networks:
+      - codebyte-net
+
+  # ----------------------------------------------------
+  # 🎨 Angular Frontend
+  # ----------------------------------------------------
+  frontend:
+    build:
+      context: .
+      dockerfile: Frontend/Dockerfile.frontend
+    container_name: codebyte-frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "4200:4200"
+    networks:
+      - codebyte-net
+
+volumes:
+  mysql_data:
+
+networks:
+  codebyte-net:
+    driver: bridge
