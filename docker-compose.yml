@@ -4,53 +4,47 @@ services:
 
   mysql:
     image: mysql:8.0
-    container_name: inventory-mysql
+    container_name: employee-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: inventry
+      MYSQL_DATABASE: wt
     ports:
       - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
-      - inventory-net
+      - employee-net
 
   backend:
     build:
-      context: ./Inventry_Backend
+      context: ./backend
       dockerfile: Dockerfile
-    container_name: inventory-backend
+    container_name: employee-backend
     depends_on:
       - mysql
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/inventry?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/wt?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
-      MAIL_USER: a25.aditya07@gmail.com
-      MAIL_PASS: rsqx lrgl akmj iesy
-      RAZORPAY_KEY_ID: rzp_test_RSqbWHpGcC982W
-      RAZORPAY_KEY_SECRET: V5N9m7uSIx7Q1PtloQDjVxbS
-      GOOGLE_CLIENT_ID: 36776938908-1ru35dgfko83je5i0ebatdp6k5e2op3j.apps.googleusercontent.com
-      GOOGLE_CLIENT_SECRET: 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
-      OAUTH_REDIRECT_URI: "https://dumpishly-unlined-marti.ngrok-free.dev/login/oauth2/code/google"
+    
     ports:
-      - "8080:8080"
+      - "8080:8181"
     networks:
-      - inventory-net
+      - employee-net
 
   frontend:
     build:
       context: ./Frontend
       dockerfile: Dockerfile
-    container_name: inventory-frontend
+    container_name: employee-frontend
     depends_on:
       - backend
     environment:
-      BACKEND_URL: http://inventory-backend:8080
+      BACKEND_URL: http://inventory-backend:8181
     ports:
       - "4200:80"
     networks:
-      - inventory-net
+      - employee-net
 
 volumes:
   mysql_data:

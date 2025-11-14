@@ -10,12 +10,12 @@ import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } fr
 })
 export class Addemployee implements OnInit {
 
-  employeeForm!: FormGroup;  // ✅ Main form object that holds employee data
+  employeeForm!: FormGroup;  
 
-  constructor(private fb: FormBuilder) {} // ✅ FormBuilder helps create form controls easily
+  constructor(private fb: FormBuilder) {} 
 
   ngOnInit(): void {
-    // ✅ Initialize the form when component loads
+    
     this.employeeForm = this.fb.group({
       id: [null, Validators.required],        // Employee ID (required)
       username: ['', Validators.required],    // Username (required)
