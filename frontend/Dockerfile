@@ -15,7 +15,7 @@ RUN npm run build -- --configuration production
 # ---------- Stage 2: Serve with Nginx ----------
 FROM nginx:stable-alpine
 # Copy build output from the previous stage
-COPY --from=build /app/dist/inventry-project/browser /usr/share/nginx/html
+COPY --from=build /app/dist/empnew/browser /usr/share/nginx/html
 
 
 # Expose port 80 (Nginx default)
