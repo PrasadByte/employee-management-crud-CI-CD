@@ -49,5 +49,5 @@ volumes:
   mysql_data:
 
 networks:
-  inventory-net:
+  employee-net:
     driver: bridge
