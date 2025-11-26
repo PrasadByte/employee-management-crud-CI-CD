@@ -3,6 +3,7 @@ package employee.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.security.core.userdetails.User;
 
 import java.util.List;
 
@@ -27,5 +28,6 @@ public class Employee {
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private Laptop laptop;
+
 
 }

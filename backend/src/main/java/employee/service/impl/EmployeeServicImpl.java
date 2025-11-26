@@ -12,6 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,11 +26,18 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 public class EmployeeServicImpl implements EmployeeService {
-
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final AuthenticationManager authenticationManager;
     @Autowired
     private EmployeeRepo employeeRepo;
     @Autowired
     private ModelMapper mapper;
+
+
+    public EmployeeServicImpl(BCryptPasswordEncoder bCryptPasswordEncoder, AuthenticationManager authenticationManager) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.authenticationManager = authenticationManager;
+    }
 
     //add multiple employees
     @Override
@@ -97,7 +108,7 @@ public class EmployeeServicImpl implements EmployeeService {
     public Employee updateEmployee(int id, Employee emp) {
         log.info("Employee fetching with id{}", id);
         Employee updateEmp = employeeRepo.findById(id).orElseThrow(() -> {
-            log.info("id not found with {}", id);
+            log.info("id not found with for update {}", id);
             return new EntityNotFoundException("id not found with "+id);
         });
         updateEmp.setName(emp.getName());
@@ -149,6 +160,25 @@ public class EmployeeServicImpl implements EmployeeService {
         log.info("Found {} employee DTOs", employeeDtos.size());
         return employeeDtos;
 
+    }
+
+    @Override
+    public Employee registerEmployee(Employee employee) {
+        employee.setPassword(bCryptPasswordEncoder
+                .encode(employee.getPassword()));
+        return employeeRepo.save(employee);
+    }
+
+    @Override
+    public String verify(String email, String password) {
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(email, password)
+        );
+        if (authentication.isAuthenticated()) {
+            return "Login Successful";
+        } else {
+            return "Login Failed";
+        }
     }
 }
 

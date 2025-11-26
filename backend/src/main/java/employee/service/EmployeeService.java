@@ -28,7 +28,10 @@ public interface EmployeeService {
     EmployeeDto getEmployeeByidWithDto(int id);
     //get All Employees With Dto
     List<EmployeeDto> getAllEmployeesWithDto();
-
+    //Register Employee
+    Employee registerEmployee(Employee employee);
+    //login Employee
+    String verify(String email, String password);
 
 
 
